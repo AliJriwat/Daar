@@ -8,47 +8,42 @@ import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/secrets/app_secrets.dart';
+import 'features/auth/data/repositories/usecases/current_user.dart';
 
 final serviceLocator = GetIt.instance;
+
 Future<void> initDependencies() async {
-  _initAuth();
+  // 1️⃣ Inizializza Supabase e registra il client
   final supabase = await Supabase.initialize(
     url: AppSecrets.supabaseUrl,
     anonKey: AppSecrets.supabaseAnonKey,
   );
   serviceLocator.registerLazySingleton(() => supabase.client);
+
+  // 2️⃣ Inizializza Auth (RemoteDataSource, Repository, UseCases, Bloc)
+  _initAuth();
 }
 
 void _initAuth() {
-  serviceLocator.registerFactory<AuthRemoteDataSource>(
-          () => AuthRemoteDataSourceImpl(
-              serviceLocator(),
-          )
+  // Remote Data Source
+  serviceLocator.registerLazySingleton<AuthRemoteDataSource>(
+        () => AuthRemoteDataSourceImpl(serviceLocator()),
   );
 
-  serviceLocator.registerFactory<AuthRepository>(
-          () => AuthRepositoryImpl(
-        serviceLocator(),
-      )
+  // Repository
+  serviceLocator.registerLazySingleton<AuthRepository>(
+        () => AuthRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerFactory(
-          () => UserSignUp(
-        serviceLocator(),
-      )
-  );
+  // Use Cases
+  serviceLocator.registerLazySingleton(() => UserSignUp(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => UserLogin(serviceLocator()));
 
-  serviceLocator.registerFactory(
-          () => UserLogin(
-        serviceLocator(),
-      )
-  );
-
-  serviceLocator.registerLazySingleton(
-          () => AuthBloc(
-        userSignUp: serviceLocator(),
-            userLogin: serviceLocator(),
-            currentUser: serviceLocator(),
-      )
-  );
+  serviceLocator.registerLazySingleton(() => CurrentUser(serviceLocator()));
+  // Bloc
+  serviceLocator.registerLazySingleton(() => AuthBloc(
+    userSignUp: serviceLocator(),
+    userLogin: serviceLocator(),
+    currentUser: serviceLocator<CurrentUser>(),
+  ));
 }
