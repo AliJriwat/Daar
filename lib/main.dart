@@ -1,7 +1,6 @@
 import 'package:daar_project/app/theme/theme.dart';
 import 'package:daar_project/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:daar_project/features/auth/presentation/pages/login_page.dart';
-import 'package:daar_project/features/home/presentation/pages/home_page.dart';
 import 'package:daar_project/features/home/presentation/pages/main_page.dart';
 import 'package:daar_project/init_dependencies.dart';
 import 'package:easy_localization/easy_localization.dart';
