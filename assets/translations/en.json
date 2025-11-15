@@ -2,5 +2,9 @@
   "login": "Login",
   "signup": "Sign Up",
   "email": "Email",
-  "password": "Password"
+  "password": "Password",
+  "Home": "Home",
+  "Favorites": "Favorites",
+  "Messages": "Messages",
+  "Profile": "Profile"
 }

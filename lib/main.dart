@@ -2,6 +2,7 @@ import 'package:daar_project/app/theme/theme.dart';
 import 'package:daar_project/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:daar_project/features/auth/presentation/pages/login_page.dart';
 import 'package:daar_project/features/home/presentation/pages/home_page.dart';
+import 'package:daar_project/features/home/presentation/pages/main_page.dart';
 import 'package:daar_project/init_dependencies.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ Future<void> main() async {
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
       path: 'assets/translations',
-      fallbackLocale: Locale('ar'),
+      fallbackLocale: Locale('en'),
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => serviceLocator<AppUserCubit>()),
@@ -48,7 +49,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkThemeMode,
+      theme: AppTheme.lightThemeMode,
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
@@ -58,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return const HomePage();
+            return const MainPage();
           }
           return const LoginPage();
         },

@@ -25,6 +25,14 @@ class AppTheme {
         titleMedium: TextStyle(color: AppColors.white),
       titleLarge: TextStyle(color: AppColors.white, fontWeight: FontWeight.bold, fontSize: 20),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.darkBackground,
+      selectedItemColor: AppColors.primary,
+      unselectedItemColor: Colors.grey,
+      selectedLabelStyle: const TextStyle(color: AppColors.primary),
+      unselectedLabelStyle: const TextStyle(color: AppColors.white),
+      type: BottomNavigationBarType.fixed,
+    ),
   );
   static final lightThemeMode = ThemeData.dark().copyWith(
       scaffoldBackgroundColor: AppColors.background,
@@ -43,5 +51,13 @@ class AppTheme {
         titleMedium: TextStyle(color: AppColors.black),
         titleLarge: TextStyle(color: AppColors.black, fontWeight: FontWeight.bold, fontSize: 20),
       ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.background,
+      selectedItemColor: AppColors.primary,
+      unselectedItemColor: Colors.grey,
+      selectedLabelStyle: const TextStyle(color: AppColors.primary),
+      unselectedLabelStyle: const TextStyle(color: AppColors.black),
+      type: BottomNavigationBarType.fixed,
+    ),
   );
 }
