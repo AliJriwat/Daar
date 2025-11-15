@@ -35,19 +35,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkThemeMode,
-      home: BlocSelector<AppUserCubit, AppUserState, bool>(
-        selector: (state) {
-          return state is AppUserLoggedIn;
-        },
-        builder: (context, isLoggedIn) {
-          if (isLoggedIn) {
-            return Scaffold(
-              body: Center(
-                child: Text("ciao"),
-              ),
-            );
+      home: BlocBuilder<AppUserCubit, AppUserState>(
+        builder: (context, state) {
+          debugPrint("STATO ATTUALE: $state");
+          // Controlla se l'utente è loggato in base allo stato
+          if (state is AppUserLoggedIn) {
+            return const HomePage(); // O la tua pagina principale
+          } else {
+            return const LoginPage();
           }
-          return const LoginPage();
         },
       ),
     );
