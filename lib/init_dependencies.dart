@@ -7,6 +7,7 @@ import 'package:daar_project/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'core/common/app_user/app_user_cubit.dart';
 import 'core/secrets/app_secrets.dart';
 import 'features/auth/data/repositories/usecases/current_user.dart';
 
@@ -38,8 +39,9 @@ void _initAuth() {
   // Use Cases
   serviceLocator.registerLazySingleton(() => UserSignUp(serviceLocator()));
   serviceLocator.registerLazySingleton(() => UserLogin(serviceLocator()));
-
   serviceLocator.registerLazySingleton(() => CurrentUser(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => AppUserCubit());
+
   // Bloc
   serviceLocator.registerLazySingleton(() => AuthBloc(
     userSignUp: serviceLocator(),
