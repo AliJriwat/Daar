@@ -45,5 +45,6 @@ void _initAuth() {
     userSignUp: serviceLocator(),
     userLogin: serviceLocator(),
     currentUser: serviceLocator<CurrentUser>(),
+    appUserCubit: serviceLocator(),
   ));
 }
