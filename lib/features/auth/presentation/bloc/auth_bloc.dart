@@ -1,6 +1,7 @@
 import 'package:daar_project/core/common/app_user/app_user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide User;
 
 import '../../data/repositories/usecases/current_user.dart';
 import '../../data/repositories/usecases/usecase.dart';
@@ -29,6 +30,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSignUp>(_onAuthSignUp);
     on<AuthLogin>(_onAuthLogin);
     on<AuthIsUserLoggedIn>(_isUserLoggedIn);
+    on<AuthLogout>(_onAuthLogout);
+  }
+
+  Future<void> _onAuthLogout(AuthLogout event, Emitter<AuthState> emit) async {
+    try {
+      // 1. Disconetti da Supabase
+      await Supabase.instance.client.auth.signOut();
+
+      // 2. Resetta l'AppUserCubit
+      _appUserCubit.updateUser(null);
+
+      // 3. Emetti stato di successo
+      emit(AuthInitial());
+
+      debugPrint('✅ Logout completato via AuthBloc');
+    } catch (e) {
+      debugPrint('❌ Errore durante il logout: $e');
+      // Anche in caso di errore, resetta lo stato locale
+      _appUserCubit.updateUser(null);
+      emit(AuthInitial());
+    }
   }
 
   void _isUserLoggedIn(

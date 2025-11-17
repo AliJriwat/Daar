@@ -37,10 +37,10 @@ class _MainPageState extends State<MainPage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'.tr()),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'.tr()),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'.tr()),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'.tr()),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'.tr()),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'favorites'.tr()),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'messages'.tr()),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'.tr()),
         ],
       ),
     );
