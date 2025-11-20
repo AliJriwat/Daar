@@ -36,30 +36,6 @@ class ProfileHeader extends StatelessWidget {
             ],
           ),
         ),
-        /*
-        const SizedBox(height: 20),
-        Text('username', style: theme.textTheme.titleMedium),
-        const SizedBox(height: 8),
-        Text(username, style: theme.textTheme.titleLarge),
-        const SizedBox(height: 20),
-        Text('email', style: theme.textTheme.titleMedium),
-        const SizedBox(height: 8),
-        Text(email, style: theme.textTheme.titleLarge),
-        */
-        /*
-        * Text(
-                        username,
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        email,
-                        style: const TextStyle(color: Colors.grey, fontSize: 15),
-                      ),
-        * */
       ],
     );
   }
