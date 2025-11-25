@@ -56,9 +56,7 @@ void _initAuth() {
 
 void _initSettings() {
   // Remote Data Source
-  serviceLocator.registerLazySingleton<SettingsRemoteDatasource>(
-        () => SettingsRemoteDatasource(serviceLocator()),
-  );
+  
 
   // Repository
   serviceLocator.registerLazySingleton<SettingsRepository>(
